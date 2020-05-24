@@ -42,6 +42,8 @@ public class BlockedThreadChecker {
 
   BlockedThreadChecker(long interval, TimeUnit intervalUnit, long warningExceptionTime, TimeUnit warningExceptionTimeUnit) {
     timer = new Timer("vertx-blocked-thread-checker", true);
+    org.slf4j.LoggerFactory.getLogger(getClass()).info("Initialize vertx-blocked-thread-checker {}: interval={} {}, warningExceptionTime={} {}", 
+            interval, intervalUnit, warningExceptionTime, warningExceptionTimeUnit);
     timer.schedule(new TimerTask() {
       @Override
       public void run() {

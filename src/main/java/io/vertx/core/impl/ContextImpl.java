@@ -127,6 +127,7 @@ abstract class ContextImpl implements ContextInternal {
     this.orderedTasks = new TaskQueue();
     this.internalOrderedTasks = new TaskQueue();
     this.closeHooks = new CloseHooks(log);
+    org.slf4j.LoggerFactory.getLogger(ContextImpl.class.getName()).info("construct - eventLoop={}", eventLoop);
   }
 
   static void setContext(ContextImpl context) {

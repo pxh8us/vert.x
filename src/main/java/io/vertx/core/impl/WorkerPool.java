@@ -15,6 +15,8 @@ import io.vertx.core.spi.metrics.PoolMetrics;
 
 import java.util.concurrent.ExecutorService;
 
+import org.slf4j.LoggerFactory;
+
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
@@ -26,6 +28,7 @@ public class WorkerPool {
   public WorkerPool(ExecutorService pool, PoolMetrics metrics) {
     this.pool = pool;
     this.metrics = metrics;
+    LoggerFactory.getLogger(this.getClass()).info("Init WorkerPool pool={}, metrics={}", pool, metrics);
   }
 
   ExecutorService executor() {

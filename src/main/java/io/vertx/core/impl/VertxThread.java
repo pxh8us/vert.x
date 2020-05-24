@@ -11,15 +11,18 @@
 
 package io.vertx.core.impl;
 
-import io.netty.util.concurrent.FastThreadLocalThread;
-
 import java.util.concurrent.TimeUnit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import io.netty.util.concurrent.FastThreadLocalThread;
 
 /**
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 public final class VertxThread extends FastThreadLocalThread implements BlockedThreadChecker.Task {
-
+  private static final Logger logger = LoggerFactory.getLogger(VertxThread.class);
   private final boolean worker;
   private final long maxExecTime;
   private final TimeUnit maxExecTimeUnit;
@@ -31,6 +34,7 @@ public final class VertxThread extends FastThreadLocalThread implements BlockedT
     this.worker = worker;
     this.maxExecTime = maxExecTime;
     this.maxExecTimeUnit = maxExecTimeUnit;
+    logger.info("Initialize vertx thread is-worker={}, maxExecTime={} {}, contextImpl={}", worker, maxExecTime, maxExecTimeUnit, context);
   }
 
   ContextImpl getContext() {

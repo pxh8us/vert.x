@@ -32,6 +32,8 @@ import java.net.SocketAddress;
 import java.net.SocketException;
 import java.util.concurrent.ThreadFactory;
 
+import org.slf4j.LoggerFactory;
+
 /**
  * The transport used by a {@link io.vertx.core.Vertx} instance.
  * <p/>
@@ -145,6 +147,8 @@ public class Transport {
    * @return a new event loop group
    */
   public EventLoopGroup eventLoopGroup(int type, int nThreads, ThreadFactory threadFactory, int ioRatio) {
+    LoggerFactory.getLogger(this.getClass()).info("Initialize NioEventLoopGroup nThreads={}, threadFactory={}, ioRatio={}", 
+            nThreads, threadFactory, ioRatio);
     NioEventLoopGroup eventLoopGroup = new NioEventLoopGroup(nThreads, threadFactory);
     eventLoopGroup.setIoRatio(ioRatio);
     return eventLoopGroup;
